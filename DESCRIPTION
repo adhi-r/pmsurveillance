@@ -1,7 +1,7 @@
 Package: pmsurveillance
 Title: PM Surveillance Analysis Toolkit
 Version: 0.1.0
-Authors@R: person("Adhi", role = c("aut", "cre"))
+Authors@R: person("Adhi", "R", email = "adhi@pm-surveillance.dev", role = c("aut", "cre"))
 Description: Thin interface to the pm_surveillance MotherDuck database.
     Provides connection helpers, schema catalog discovery, and project
     scaffolding for prediction market analysis.
@@ -12,10 +12,10 @@ RoxygenNote: 7.3.2
 Imports:
     DBI,
     duckdb,
-    dplyr,
     tibble,
     cli,
-    glue
+    glue,
+    withr
 Suggests:
     targets,
     tidyverse

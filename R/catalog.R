@@ -26,7 +26,7 @@ pm_catalog <- function(con = NULL, layer = NULL) {
   catalog <- tibble::as_tibble(DBI::dbGetQuery(con, query))
 
   if (!is.null(layer)) {
-    catalog <- dplyr::filter(catalog, .data$layer == .env$layer)
+    catalog <- catalog[catalog$layer == layer, ]
   }
 
   if (interactive()) {
@@ -44,7 +44,7 @@ pm_catalog <- function(con = NULL, layer = NULL) {
 #' @export
 pm_views <- function(con = NULL) {
   cat <- pm_catalog(con)
-  dplyr::filter(cat, .data$object_type == "view")
+  cat[cat$object_type == "view", ]
 }
 
 
@@ -55,7 +55,7 @@ pm_views <- function(con = NULL) {
 #' @export
 pm_tables <- function(con = NULL) {
   cat <- pm_catalog(con)
-  dplyr::filter(cat, .data$object_type == "table")
+  cat[cat$object_type == "table", ]
 }
 
 
@@ -72,9 +72,9 @@ pm_tables <- function(con = NULL) {
   )
 
   for (l in layers) {
-    label <- layer_labels[[l]] %||% l
+    label <- if (l %in% names(layer_labels)) layer_labels[[l]] else l
     cli::cli_h2(label)
-    subset <- dplyr::filter(catalog, .data$layer == l)
+    subset <- catalog[catalog$layer == l, ]
     for (i in seq_len(nrow(subset))) {
       row <- subset[i, ]
       icon <- if (row$object_type == "view") "v" else "T"
