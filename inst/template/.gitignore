@@ -1,0 +1,17 @@
+# R artifacts
+Rplots.pdf
+.Rhistory
+.RData
+.Rproj.user/
+
+# Targets cache (regenerable)
+_targets/
+
+# Output (regenerable from pipeline)
+output/
+
+# Claude Code local settings
+.claude/
+
+# OS
+.DS_Store

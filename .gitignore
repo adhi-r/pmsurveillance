@@ -1,0 +1,13 @@
+# R package build artifacts
+*.tar.gz
+*.Rcheck/
+man/*.Rd
+.Rhistory
+.RData
+.Rproj.user/
+
+# OS
+.DS_Store
+
+# Claude Code
+.claude/
